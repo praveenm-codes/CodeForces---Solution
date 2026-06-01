@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int maxCuts(int n,int a,int b,int c,vector<int>&dp){
+    if(dp[n] !=-1)return dp[n];
+    if(n==0)return dp[n]=0;
+    int acut= -1e9,bcut=-1e9,ccut=-1e9;
+    //cout<<n<<" ";
+    if(n-a>=0){
+        acut = 1+maxCuts(n-a,a,b,c,dp);
+    }
+    if(n-b>=0){
+        bcut = 1+maxCuts(n-b,a,b,c,dp);
+    }
+    if(n-c>=0){
+        ccut = 1+maxCuts(n-c,a,b,c,dp);
+    }
+    if(n<a && n<b && n<c)return dp[n] = -1e9;
+    //cout<<acut<<bcut<<ccut<<endl;
+    return dp[n]=max(acut,max(bcut,ccut));
+    
+}
+
+int main(){
+   int n,a,b,c;
+   cin>>n>>a>>b>>c;
+   vector<int> dp(n+1,-1);
+   cout<<maxCuts(n,a,b,c,dp);
+       
+}
