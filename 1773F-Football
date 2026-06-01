@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n,a,b,d=0;
+    bool acon = 0,in =0;
+    cin>>n>>a>>b;
+    if(a>=n)acon = 1;
+    if(a+b<=n)d = n - (a+b);
+    if(acon){
+        if(a-(n-1) != b)acon=0;
+    }
+    if(n == 1 && a==b){cout<<1<<endl;cout<<a<<":"<<b;return 0;}
+    cout<<d<<endl;
+    while(n--){
+            if(n!= 0 && a>0){
+                if(acon){
+                    cout<<"2:0"<<endl;
+                    acon=0;a=a-2;
+                }
+                else {cout<<"1:0"<<endl;a--;}
+                if(a<0)a=0;
+            }
+            else if(n!=0 && b>0){cout<<"0:1"<<endl;b--;}
+            else cout<<a<<":"<<b<<endl;
+    }
+}
